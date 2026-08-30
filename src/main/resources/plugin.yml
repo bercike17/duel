@@ -1,0 +1,14 @@
+name: DuelPlugin
+version: 1.0.0
+main: hu.yourname.duel.DuelPlugin
+api-version: '1.20'
+commands:
+  duel:
+    description: Duel parancsok
+    usage: /duel <join|setlobby|setnpc|reload|createarena|createmode|setkit|accept|deny> [args]
+    aliases: [d]
+permissions:
+  duel.admin:
+    default: op
+  duel.use:
+    default: true

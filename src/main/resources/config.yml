@@ -1,0 +1,65 @@
+# ==========================================
+#         DuelPlugin - Konfiguráció
+# ==========================================
+
+# Ezeket automatikusan beállítja a /duel setlobby és /duel setnpc parancs
+lobby-location: null
+npc-location: null
+countdown-seconds: 5
+
+# Engedélyezett parancsok duel közben (/duel mindig engedélyezett)
+command-whitelist:
+  - msg
+  - r
+  - helpop
+
+# ==========================================
+#            Üzenetek (színezhető)
+# ==========================================
+# Placeholderek: %player%, %target%, %challenger%, %mode%, %arena%, %seconds%
+
+messages:
+  prefix: "&6[Duel] &r"
+
+  lobby-not-set: "&cA duel lobby nincs beallitva!"
+  teleported-lobby: "&aTeleportálva a duel lobbyba!"
+  player-not-found: "&cA jatekos nem elerheto!"
+  cant-duel-self: "&cMagadat nem tudod kihivni!"
+  no-permission: "&cNincs jogod!"
+  lobby-set: "&aDuel lobby beallitva!"
+  npc-set: "&aNPC helye beallitva!"
+  config-reloaded: "&aKonfiguracio ujratoltve!"
+  arena-created: "&aPalya &e%arena% &alétrehozva &e%mode% &amódhoz!"
+  mode-created: "&aDuel mod letrehozva: &e%mode%"
+  kit-saved: "&aKit elmentve a(z) &e%mode% &amódhoz!"
+  duel-request-sent: "&aKihivas elkuldve &e%target% &ajatekosnak!"
+  duel-request-received: "&e%challenger% &akihivott egy duelre!"
+  duel-request-info: "&7Mod: &f%mode% &7| Palya: &f%arena%"
+  duel-accept-command: "&e/duel accept &7vagy &c/duel deny"
+  duel-expired: "&cA kihivas lejart."
+  no-pending-request: "&cNincs fuggo kihivasod!"
+  challenger-offline: "&cA kihivo jatekos offline!"
+  arena-not-found: "&cA palya nem talalhato!"
+  duel-denied: "&cElutasitottad a kihivast."
+  duel-denied-target: "&e%target% &celutasitotta a kihivast."
+  duel-in-progress: "&cValamelyikotok mar duelben van!"
+  duel-pending: "&cA jatekosnak mar van fuggo kihivasa!"
+  duel-started: "&2&lDuel elkezdodott! &7Mod: &f%mode% &7| Palya: &f%arena%"
+  duel-won: "&6&lGyoztel!"
+  duel-lost: "&c&lVesztettel!"
+  countdown-title: "&a&l%seconds%"
+  countdown-subtitle: "&7A duel hamarosan kezdodik..."
+  cant-move-countdown: "&cNem mozoghatsz a visszaszamlalas alatt!"
+  opponent-quit-countdown: "&cAz ellenfeled kilépett!"
+  select-mode-first: "&cElobb valassz modot!"
+  select-mode-arena: "&cValassz modot es palyat!"
+  mode-selected: "&aMod kivalasztva: &e%mode%"
+  arena-selected: "&aPalya kivalasztva: &e%arena%"
+  random-mode: "&aVeletlenszeru mod: &e%mode%"
+  random-arena: "&aVeletlenszeru palya: &e%arena%"
+  command-blocked: "&cEzt a parancsot nem hasznalhatod duel kozben!"
+  queue-joined: "&aBeleptel a queue-ba: &e%mode% - %arena%"
+  queue-left: "&cKileptel a queue-bol."
+  not-in-queue: "&cNem vagy queue-ban."
+  queue-match-found: "&aEllenfel talalva: &e%opponent%"
+  already-in-duel: "&cMar duelben vagy queue-ban vagy!"
