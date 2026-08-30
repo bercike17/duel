@@ -40,18 +40,19 @@ public class DuelManager {
 
     public void sendDuelRequest(Player challenger, Player target, String mode, String arena) {
         UUID targetId = target.getUniqueId();
+        UUID challengerId = challenger.getUniqueId();
         
         if (pendingRequests.containsKey(targetId)) {
             challenger.sendMessage(plugin.getMessageManager().getPrefixed("duel-pending"));
             return;
         }
         
-        if (activeDuels.containsKey(challenger.getUniqueId()) || activeDuels.containsKey(targetId)) {
+        if (activeDuels.containsKey(challengerId) || activeDuels.containsKey(targetId)) {
             challenger.sendMessage(plugin.getMessageManager().getPrefixed("duel-in-progress"));
             return;
         }
         
-        pendingRequests.put(targetId, new DuelRequest(challenger.getUniqueId(), mode, arena, System.currentTimeMillis()));
+        pendingRequests.put(targetId, new DuelRequest(challengerId, mode, arena, System.currentTimeMillis()));
         
         Map<String, String> ph = new HashMap<>();
         ph.put("target", target.getName());
@@ -71,8 +72,15 @@ public class DuelManager {
             public void run() {
                 if (pendingRequests.containsKey(targetId)) {
                     pendingRequests.remove(targetId);
-                    challenger.sendMessage(plugin.getMessageManager().getPrefixed("duel-expired"));
-                    if (target.isOnline()) target.sendMessage(plugin.getMessageManager().getPrefixed("duel-expired"));
+                    
+                    Player c = Bukkit.getPlayer(challengerId);
+                    if (c != null && c.isOnline()) {
+                        c.sendMessage(plugin.getMessageManager().getPrefixed("duel-expired"));
+                    }
+                    
+                    if (target.isOnline()) {
+                        target.sendMessage(plugin.getMessageManager().getPrefixed("duel-expired"));
+                    }
                 }
             }
         }.runTaskLater(plugin, 600L);
