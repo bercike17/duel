@@ -13,10 +13,10 @@ command-whitelist:
   - r
   - helpop
 
-# ==========================================
-#            Üzenetek (színezhető)
-# ==========================================
-# Placeholderek: %player%, %target%, %challenger%, %mode%, %arena%, %seconds%
+# Placeholderek: %winner% = győztes neve, %loser% = vesztes neve
+post-duel-commands:
+  - "effect clear %winner%"
+  - "effect clear %loser%"
 
 messages:
   prefix: "&6[Duel] &r"
