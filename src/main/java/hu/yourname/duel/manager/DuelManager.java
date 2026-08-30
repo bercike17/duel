@@ -241,6 +241,21 @@ public class DuelManager {
         countdownTasks.put(u2, task);
     }
     
+    private void clearAllEffects(Player player) {
+        for (PotionEffect effect : new ArrayList<>(player.getActivePotionEffects())) {
+            player.removePotionEffect(effect.getType());
+        }
+    }
+    
+    private void runPostDuelCommands(Player winner, Player loser) {
+        List<String> commands = plugin.getConfig().getStringList("post-duel-commands");
+        for (String cmd : commands) {
+            String formatted = cmd.replace("%winner%", winner.getName())
+                                    .replace("%loser%", loser.getName());
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), formatted);
+        }
+    }
+    
     public void endDuel(Player winner, Player loser) {
         activeDuels.remove(winner.getUniqueId());
         activeDuels.remove(loser.getUniqueId());
@@ -248,8 +263,13 @@ public class DuelManager {
         winner.sendMessage(plugin.getMessageManager().getPrefixed("duel-won"));
         loser.sendMessage(plugin.getMessageManager().getPrefixed("duel-lost"));
         
+        clearAllEffects(winner);
+        clearAllEffects(loser);
+        
         restoreInventory(winner);
         restoreInventory(loser);
+        
+        runPostDuelCommands(winner, loser);
         
         Location lobby = plugin.getLobbyLocation();
         if (lobby != null) {
@@ -275,6 +295,7 @@ public class DuelManager {
                 Player opponent = Bukkit.getPlayer(opponentUuid);
                 if (opponent != null && opponent.isOnline()) {
                     opponent.sendMessage(plugin.getMessageManager().getPrefixed("opponent-quit-countdown"));
+                    clearAllEffects(opponent);
                     restoreInventory(opponent);
                     Location lobby = plugin.getLobbyLocation();
                     if (lobby != null) opponent.teleport(lobby);
@@ -294,6 +315,7 @@ public class DuelManager {
         
         if (opponent != null && opponent.isOnline()) {
             opponent.sendMessage(plugin.getMessageManager().getPrefixed("duel-won"));
+            clearAllEffects(opponent);
             restoreInventory(opponent);
             Location lobby = plugin.getLobbyLocation();
             if (lobby != null) opponent.teleport(lobby);
