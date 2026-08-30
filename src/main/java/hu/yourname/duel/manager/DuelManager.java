@@ -209,6 +209,9 @@ public class DuelManager {
 
             @Override
             public void run() {
+                Player player1 = Bukkit.getPlayer(u1);
+                Player player2 = Bukkit.getPlayer(u2);
+
                 if (timeLeft <= 0) {
                     countdownPlayers.remove(u1);
                     countdownPlayers.remove(u2);
@@ -223,10 +226,14 @@ public class DuelManager {
                     ph.put("arena", arena.getName());
                     String msg = plugin.getMessageManager().get("duel-started", ph);
                     
-                    p1.sendTitle("", msg, 10, 70, 20);
-                    p2.sendTitle("", msg, 10, 70, 20);
-                    p1.sendMessage(plugin.getMessageManager().getPrefixed("duel-started", ph));
-                    p2.sendMessage(plugin.getMessageManager().getPrefixed("duel-started", ph));
+                    if (player1 != null && player1.isOnline()) {
+                        player1.sendTitle("", msg, 10, 70, 20);
+                        player1.sendMessage(plugin.getMessageManager().getPrefixed("duel-started", ph));
+                    }
+                    if (player2 != null && player2.isOnline()) {
+                        player2.sendTitle("", msg, 10, 70, 20);
+                        player2.sendMessage(plugin.getMessageManager().getPrefixed("duel-started", ph));
+                    }
                     
                     countdownTasks.remove(u1);
                     countdownTasks.remove(u2);
@@ -239,8 +246,12 @@ public class DuelManager {
                 String title = plugin.getMessageManager().get("countdown-title", ph);
                 String subtitle = plugin.getMessageManager().get("countdown-subtitle");
                 
-                p1.sendTitle(title, subtitle, 0, 25, 0);
-                p2.sendTitle(title, subtitle, 0, 25, 0);
+                if (player1 != null && player1.isOnline()) {
+                    player1.sendTitle(title, subtitle, 0, 25, 0);
+                }
+                if (player2 != null && player2.isOnline()) {
+                    player2.sendTitle(title, subtitle, 0, 25, 0);
+                }
                 
                 timeLeft--;
             }
