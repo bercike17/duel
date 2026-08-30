@@ -282,7 +282,6 @@ public class DuelManager {
     public void handleQuit(Player player) {
         UUID uuid = player.getUniqueId();
         
-        // Ha visszaszámlálás alatt lép ki
         if (countdownPlayers.contains(uuid)) {
             countdownPlayers.remove(uuid);
             BukkitTask task = countdownTasks.remove(uuid);
@@ -307,7 +306,6 @@ public class DuelManager {
             return;
         }
         
-        // Ha aktív párbaj alatt lép ki
         ActiveDuel duel = activeDuels.get(uuid);
         if (duel == null) return;
         
