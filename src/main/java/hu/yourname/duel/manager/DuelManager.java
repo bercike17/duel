@@ -78,8 +78,9 @@ public class DuelManager {
                         c.sendMessage(plugin.getMessageManager().getPrefixed("duel-expired"));
                     }
                     
-                    if (target.isOnline()) {
-                        target.sendMessage(plugin.getMessageManager().getPrefixed("duel-expired"));
+                    Player t = Bukkit.getPlayer(targetId);
+                    if (t != null && t.isOnline()) {
+                        t.sendMessage(plugin.getMessageManager().getPrefixed("duel-expired"));
                     }
                 }
             }
