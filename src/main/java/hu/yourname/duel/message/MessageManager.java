@@ -40,10 +40,10 @@ public class MessageManager {
         plugin.getConfig().set("messages.no-permission", "&cNincs jogod!");
         plugin.getConfig().set("messages.lobby-set", "&aDuel lobby beallitva!");
         plugin.getConfig().set("messages.npc-set", "&aNPC helye beallitva!");
+        plugin.getConfig().set("messages.config-reloaded", "&aKonfiguracio ujratoltve!");
         plugin.getConfig().set("messages.arena-created", "&aPalya &e%arena% &alétrehozva &e%mode% &amódhoz!");
         plugin.getConfig().set("messages.mode-created", "&aDuel mod letrehozva: &e%mode%");
         plugin.getConfig().set("messages.kit-saved", "&aKit elmentve a(z) &e%mode% &amódhoz!");
-        plugin.getConfig().set("messages.config-reloaded", "&aKonfiguracio ujratoltve!");
         plugin.getConfig().set("messages.duel-request-sent", "&aKihivas elkuldve &e%target% &ajatekosnak!");
         plugin.getConfig().set("messages.duel-request-received", "&e%challenger% &akihivott egy duelre!");
         plugin.getConfig().set("messages.duel-request-info", "&7Mod: &f%mode% &7| Palya: &f%arena%");
@@ -54,6 +54,8 @@ public class MessageManager {
         plugin.getConfig().set("messages.arena-not-found", "&cA palya nem talalhato!");
         plugin.getConfig().set("messages.duel-denied", "&cElutasitottad a kihivast.");
         plugin.getConfig().set("messages.duel-denied-target", "&e%target% &celutasitotta a kihivast.");
+        plugin.getConfig().set("messages.duel-in-progress", "&cValamelyikotok mar duelben van!");
+        plugin.getConfig().set("messages.duel-pending", "&cA jatekosnak mar van fuggo kihivasa!");
         plugin.getConfig().set("messages.duel-started", "&2&lDuel elkezdodott! &7Mod: &f%mode% &7| Palya: &f%arena%");
         plugin.getConfig().set("messages.duel-won", "&6&lGyoztel!");
         plugin.getConfig().set("messages.duel-lost", "&c&lVesztettel!");
@@ -66,16 +68,14 @@ public class MessageManager {
         plugin.getConfig().set("messages.arena-selected", "&aPalya kivalasztva: &e%arena%");
         plugin.getConfig().set("messages.random-mode", "&aVeletlenszeru mod: &e%mode%");
         plugin.getConfig().set("messages.random-arena", "&aVeletlenszeru palya: &e%arena%");
-        plugin.getConfig().set("messages.duel-in-progress", "&cValamelyikotok mar duelben van!");
-        plugin.getConfig().set("messages.duel-pending", "&cA jatekosnak mar van fuggo kihivasa!");
+        plugin.getConfig().set("messages.opponent-quit-countdown", "&cAz ellenfeled kilépett a visszaszámlálás alatt!");
+        plugin.getConfig().set("messages.command-blocked", "&cEzt a parancsot nem hasznalhatod duel kozben!");
+        plugin.getConfig().set("messages.queue-joined", "&aBeleptel a queue-ba: &e%mode% - %arena%");
+        plugin.getConfig().set("messages.queue-left", "&cKileptel a queue-bol.");
+        plugin.getConfig().set("messages.not-in-queue", "&cNem vagy queue-ban.");
+        plugin.getConfig().set("messages.queue-match-found", "&aEllenfel talalva: &e%opponent%");
+        plugin.getConfig().set("messages.already-in-duel", "&cMar duelben vagy queue-ban vagy!");
         plugin.saveConfig();
-		plugin.getConfig().set("messages.opponent-quit-countdown", "&cAz ellenfeled kilépett a visszaszámlálás alatt!");
-		plugin.getConfig().set("messages.command-blocked", "&cEzt a parancsot nem hasznalhatod duel kozben!");
-		plugin.getConfig().set("messages.queue-joined", "&aBeleptel a queue-ba: &e%mode% - %arena%");
-		plugin.getConfig().set("messages.queue-left", "&cKileptel a queue-bol.");
-		plugin.getConfig().set("messages.not-in-queue", "&cNem vagy queue-ban.");
-		plugin.getConfig().set("messages.queue-match-found", "&aEllenfel talalva: &e%opponent%");
-		plugin.getConfig().set("messages.already-in-duel", "&cMar duelben vagy queue-ban vagy!");
     }
     
     public String get(String key) {
